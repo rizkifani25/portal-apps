@@ -1,17 +1,150 @@
+<!-- header main -->
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-avatar
+        slot="start"
+        style="width: 30px !important; height: 30px !important; margin-left: 10px !important;"
+        (click)="openMenu()"
+        type="button"
+      >
+        <img
+          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+        />
+      </ion-avatar>
+    </ion-buttons>
     <ion-title>
-      Tab 1
+      Feeds
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<!-- end header main -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<!-- floating button -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="paper-plane"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<!-- end floating button -->
+
+<ion-menu side="start">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-buttons slot="start">
+        <ion-avatar
+          slot="start"
+          class="sidebar-avatar-style"
+          (click)="goToProfile()"
+          type="button"
+        >
+          <img
+            src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+          />
+        </ion-avatar>
+      </ion-buttons>
     </ion-toolbar>
+    <ion-text class="sidebar-user-info-style">
+      <p class="sidebar-name-style"><strong>Wild Life</strong></p>
+      <p class="sidebar-username-style">@murizkiii</p>
+    </ion-text>
   </ion-header>
+  <ion-content id="main-content">
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item
+          lines="none"
+          [routerLink]="['/profile']"
+          routerLinkActive="router-link-active"
+        >
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item
+          lines="none"
+          [routerLink]="['/traffic']"
+          routerLinkActive="router-link-active"
+        >
+          <ion-icon name="trending-up" slot="start"></ion-icon>
+          <ion-label>Traffic</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item
+          lines="none"
+          [routerLink]="['/bookmarks']"
+          routerLinkActive="router-link-active"
+        >
+          <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+          <ion-label>Bookmarks</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item
+          [routerLink]="['/setting']"
+          routerLinkActive="router-link-active"
+        >
+          <ion-label>Settings and privacy</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item
+          [routerLink]="['/help']"
+          routerLinkActive="router-link-active"
+        >
+          <ion-label>Help center</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item
+          lines="none"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+        >
+          <ion-icon name="power-outline" slot="start" color="danger"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet main> </ion-router-outlet>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<!-- start content -->
+<ion-content id="post">
+  <ion-list>
+    <ion-item *ngFor="let item of createRange(10)">
+      <ion-avatar slot="start" class="user-image-style">
+        <img
+          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+        />
+      </ion-avatar>
+      <ion-text class="post-container-style">
+        <div class="user-info">
+          <p>
+            <strong class="name-style">Wild Life</strong>
+            <span class="user-name-style">@murizkiii</span>
+          </p>
+        </div>
+        <div class="post-content-style">
+          <p>
+            hiyahiyahiya
+          </p>
+        </div>
+        <ul class="post-action">
+          <li class="comment-label-style">
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+            <span class="comment-info-style">1</span>
+          </li>
+          <li class="like-label-style">
+            <ion-icon name="heart-outline"></ion-icon>
+            <span class="like-info-style">134</span>
+          </li>
+        </ul>
+      </ion-text>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<!-- end content -->

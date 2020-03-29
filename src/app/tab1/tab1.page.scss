@@ -1,3 +1,79 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+.user-image-style {
+  margin-left: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+.name-style {
+  color: white;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.user-name-style {
+  color: #8c8d91;
+  font-size: 16px;
+}
+
+.post-container-style {
+  margin-top: 0px;
+}
+
+.post-content-style {
+  color: rgb(231, 231, 231);
+  text-align: left;
+  margin-top: -15px;
+  font-weight: 0.7em;
+}
+
+.post-action li {
+  color: #8c8d91;
+  display: inline-block;
+  margin-left: 15px !important;
+}
+
+.post-action {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.like-info-style {
+  margin-left: 3px;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.comment-info-style {
+  margin-left: 3px;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+// side bar
+.sidebar-user-info-style p {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.sidebar-name-style {
+  color: white;
+  margin-top: 5px;
+  margin-left: 20px !important;
+}
+
+.sidebar-username-style {
+  color: #8c8d91;
+  margin-top: -12px;
+  margin-left: 20px !important;
+}
+
+.sidebar-avatar-style {
+  width: 50px !important;
+  height: 50px !important;
+  margin-left: 15px !important;
+  margin-top: 15px;
+}

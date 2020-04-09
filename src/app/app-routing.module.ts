@@ -28,11 +28,6 @@ const routes: Routes = [
     ],
   },
   {
-    path: "fani16",
-    loadChildren: () =>
-      import("./fani16/fani16.module").then((m) => m.Fani16PageModule),
-  },
-  {
     path: "newcustomer",
     loadChildren: () =>
       import("./newcustomer/newcustomer.module").then(

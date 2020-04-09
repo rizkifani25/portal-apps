@@ -28,13 +28,6 @@ const routes: Routes = [
     ],
   },
   {
-    path: "newcustomer",
-    loadChildren: () =>
-      import("./newcustomer/newcustomer.module").then(
-        (m) => m.NewcustomerPageModule
-      ),
-  },
-  {
     path: "profile",
     loadChildren: () =>
       import("./profile/profile.module").then((m) => m.ProfilePageModule),

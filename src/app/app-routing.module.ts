@@ -5,17 +5,17 @@ const routes: Routes = [
   {
     path: "",
     redirectTo: "/login",
-    pathMatch: "full"
+    pathMatch: "full",
   },
   {
     path: "login",
     loadChildren: () =>
-      import("./login/login.module").then(m => m.LoginPageModule)
+      import("./login/login.module").then((m) => m.LoginPageModule),
   },
   {
     path: "register",
     loadChildren: () =>
-      import("./register/register.module").then(m => m.RegisterPageModule)
+      import("./register/register.module").then((m) => m.RegisterPageModule),
   },
   {
     path: "home",
@@ -23,15 +23,32 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("./tabs/tabs.module").then(m => m.TabsPageModule)
-      }
-    ]
-  }
+          import("./tabs/tabs.module").then((m) => m.TabsPageModule),
+      },
+    ],
+  },
+  {
+    path: "fani16",
+    loadChildren: () =>
+      import("./fani16/fani16.module").then((m) => m.Fani16PageModule),
+  },
+  {
+    path: "newcustomer",
+    loadChildren: () =>
+      import("./newcustomer/newcustomer.module").then(
+        (m) => m.NewcustomerPageModule
+      ),
+  },
+  {
+    path: "profile",
+    loadChildren: () =>
+      import("./profile/profile.module").then((m) => m.ProfilePageModule),
+  },
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

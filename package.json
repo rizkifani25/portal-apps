@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "lab": "ionic serve --lab --lab-port=8201",
+    "heroku-postbuild": "ng build --prod",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",

@@ -1,14 +1,23 @@
 <ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="backToHome()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
   <ion-content>
     <ion-grid class="vertical-align-content">
-      <form #form="ngForm" (ngSubmit)="register(form)" method="post">
+      <form #form="ngForm" (ngSubmit)="updateProfile(form)" method="post">
         <ion-row>
           <ion-col size="2" offset=""></ion-col>
           <ion-col class="ion-align-self-center">
-            <ion-item>
+            <ion-item *ngIf="userData">
               <ion-label position="floating">Phone Number</ion-label>
               <ion-input
-                ngModel
+                ngModel="{{userData['phone']}}"
                 type="tel"
                 name="phone"
                 required="true"
@@ -21,10 +30,10 @@
         <ion-row>
           <ion-col size="2" offset=""></ion-col>
           <ion-col class="ion-align-self-center">
-            <ion-item>
+            <ion-item *ngIf="userData">
               <ion-label position="floating">Email</ion-label>
               <ion-input
-                ngModel
+                ngModel="{{userData['email']}}"
                 type="email"
                 name="email"
                 required="true"
@@ -37,10 +46,10 @@
         <ion-row>
           <ion-col size="2" offset=""></ion-col>
           <ion-col class="ion-align-self-center">
-            <ion-item>
+            <ion-item *ngIf="userData">
               <ion-label position="floating">Your Name</ion-label>
               <ion-input
-                ngModel
+                ngModel="{{userData['name']}}"
                 type="text"
                 name="name"
                 required="true"
@@ -53,30 +62,16 @@
         <ion-row>
           <ion-col size="2" offset=""></ion-col>
           <ion-col class="ion-align-self-center">
-            <ion-item>
-              <ion-label position="floating">Username</ion-label>
+            <ion-item *ngIf="userData">
+              <!-- <ion-label position="floating">Username</ion-label> -->
               <ion-input
                 ngModel
                 type="text"
                 name="username"
                 required="true"
-              ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="2" offset=""></ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="2" offset=""></ion-col>
-          <ion-col class="ion-align-self-center">
-            <ion-item>
-              <ion-label position="floating">Password</ion-label>
-              <ion-input
-                ngModel
-                type="password"
-                name="password"
-                required="true"
-              ></ion-input>
+                disabled="true"
+                >{{userData['user_name']}}</ion-input
+              >
             </ion-item>
           </ion-col>
           <ion-col size="2" offset=""></ion-col>
@@ -86,35 +81,12 @@
           <ion-col size="2" offset=""></ion-col>
           <ion-col class="ion-align-self-center">
             <ion-button type="submit" expand="full" color="success">
-              Register
+              Update Profile
             </ion-button>
           </ion-col>
           <ion-col size="2" offset=""></ion-col>
         </ion-row>
       </form>
-
-      <ion-row>
-        <ion-col size="2" offset=""></ion-col>
-        <ion-col class="ion-text-center">
-          <p text-center>Already have a account?</p>
-        </ion-col>
-        <ion-col size="2" offset=""></ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="2" offset=""></ion-col>
-        <ion-col class="ion-align-self-center">
-          <ion-button
-            expand="full"
-            color="primary"
-            [routerLink]="['/login']"
-            routerLinkActive="router-link-active"
-          >
-            login
-          </ion-button>
-        </ion-col>
-        <ion-col size="2" offset=""></ion-col>
-      </ion-row>
     </ion-grid>
   </ion-content>
 </ion-app>

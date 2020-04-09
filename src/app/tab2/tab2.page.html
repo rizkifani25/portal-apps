@@ -2,11 +2,13 @@
   <ion-toolbar>
     <ion-avatar
       slot="start"
-      style="width: 30px !important; height: 30px !important; margin-left: 10px !important;"
+      style="
+        width: 30px !important;
+        height: 30px !important;
+        margin-left: 10px !important;
+      "
     >
-      <img
-        src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
-      />
+      <img *ngIf="userData" src="{{userData['dp_url']}}" />
     </ion-avatar>
     <ion-searchbar showCancelButton="focus"></ion-searchbar>
   </ion-toolbar>

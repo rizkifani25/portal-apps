@@ -1,0 +1,41 @@
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="post(form)" method="post">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="closeModal()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button
+          shape="round"
+          fill="solid"
+          type="submit"
+          expand="full"
+          color="primary"
+        >
+          <p style="font-size: 14px;">Post</p>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-item>
+      <ion-label position="fixed">
+        <ion-avatar>
+          <img *ngIf="userData" src="{{ userData['dp_url'] }}" />
+        </ion-avatar>
+      </ion-label>
+      <ion-textarea
+        ngModel
+        name="post_content"
+        autoGrow="true"
+        maxlength="250"
+        rows="6"
+        cols="20"
+        placeholder="How was your day?"
+        style="min-height: 100px;"
+        autofocus="true"
+        position="floating"
+      ></ion-textarea>
+    </ion-item>
+  </form>
+</ion-content>

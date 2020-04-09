@@ -4,13 +4,15 @@
     <ion-buttons slot="start">
       <ion-avatar
         slot="start"
-        style="width: 30px !important; height: 30px !important; margin-left: 10px !important;"
+        style="
+          width: 30px !important;
+          height: 30px !important;
+          margin-left: 10px !important;
+        "
         (click)="openMenu()"
         type="button"
       >
-        <img
-          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
-        />
+        <img *ngIf="userData" src="{{userData['dp_url']}}" />
       </ion-avatar>
     </ion-buttons>
     <ion-title>
@@ -22,7 +24,7 @@
 
 <!-- floating button -->
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button>
+  <ion-fab-button (click)="onClickPost()">
     <ion-icon name="paper-plane"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -35,28 +37,26 @@
         <ion-avatar
           slot="start"
           class="sidebar-avatar-style"
-          (click)="goToProfile()"
           type="button"
+          (click)="goToProfile(userData['user_name'])"
         >
-          <img
-            src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
-          />
+          <img *ngIf="userData" src="{{userData['dp_url']}}" />
         </ion-avatar>
       </ion-buttons>
     </ion-toolbar>
     <ion-text class="sidebar-user-info-style">
-      <p class="sidebar-name-style"><strong>Wild Life</strong></p>
-      <p class="sidebar-username-style">@murizkiii</p>
+      <p class="sidebar-name-style">
+        <strong *ngIf="userData">{{userData["name"]}}</strong>
+      </p>
+      <p class="sidebar-username-style" *ngIf="userData">
+        {{userData["user_name"]}}
+      </p>
     </ion-text>
   </ion-header>
   <ion-content id="main-content">
     <ion-list>
       <ion-menu-toggle>
-        <ion-item
-          lines="none"
-          [routerLink]="['/profile']"
-          routerLinkActive="router-link-active"
-        >
+        <ion-item lines="none" (click)="goToProfile(userData['user_name'])">
           <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label>Profile</ion-label>
         </ion-item>
@@ -102,6 +102,7 @@
           lines="none"
           [routerLink]="['/login']"
           routerLinkActive="router-link-active"
+          (click)="onLogout()"
         >
           <ion-icon name="power-outline" slot="start" color="danger"></ion-icon>
           <ion-label>Logout</ion-label>
@@ -114,37 +115,59 @@
 
 <!-- start content -->
 <ion-content id="post">
+  <ion-refresher slot="fixed" (ionRefresh)="pullToRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+      >>
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
-    <ion-item *ngFor="let item of createRange(10)">
-      <ion-avatar slot="start" class="user-image-style">
-        <img
-          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
-        />
-      </ion-avatar>
-      <ion-text class="post-container-style">
-        <div class="user-info">
-          <p>
-            <strong class="name-style">Wild Life</strong>
-            <span class="user-name-style">@murizkiii</span>
-          </p>
-        </div>
-        <div class="post-content-style">
-          <p>
-            hiyahiyahiya
-          </p>
-        </div>
-        <ul class="post-action">
-          <li class="comment-label-style">
-            <ion-icon name="chatbubbles-outline"></ion-icon>
-            <span class="comment-info-style">1</span>
-          </li>
-          <li class="like-label-style">
-            <ion-icon name="heart-outline"></ion-icon>
-            <span class="like-info-style">134</span>
-          </li>
-        </ul>
-      </ion-text>
-    </ion-item>
+    <ion-item-sliding *ngFor="let post of userPost">
+      <ion-item-options side="start">
+        <ion-item-option
+          color="danger"
+          (click)="deletePost(post['user_name'], post['content'])"
+          >Delete</ion-item-option
+        >
+      </ion-item-options>
+      <ion-item>
+        <ion-avatar slot="start" class="user-image-style">
+          <img *ngIf="userData" src="{{userData['dp_url']}}" />
+        </ion-avatar>
+        <ion-text class="post-container-style">
+          <div class="user-info">
+            <p>
+              <strong class="name-style" *ngIf="userData"
+                >{{userData["name"]}}</strong
+              >
+              <span class="user-name-style" *ngIf="userPost"
+                >{{post["user_name"]}}</span
+              >
+            </p>
+          </div>
+          <div class="post-content-style">
+            <p *ngIf="userPost">
+              {{post["content"]}}
+            </p>
+          </div>
+          <ul class="post-action">
+            <li class="comment-label-style">
+              <ion-icon name="chatbubbles-outline"></ion-icon>
+              <span class="comment-info-style">1</span>
+            </li>
+            <li class="like-label-style">
+              <ion-icon name="heart-outline"></ion-icon>
+              <span class="like-info-style" *ngIf="userPost"
+                >{{post["like"]}}</span
+              >
+            </li>
+          </ul>
+        </ion-text>
+      </ion-item>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
 <!-- end content -->

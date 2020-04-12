@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, ViewChild } from "@angular/core";
 import {
   MenuController,
   LoadingController,
@@ -12,12 +12,20 @@ import { GetUserData } from "../../utils/api/getUserData";
 import { GetUserPost } from "../../utils/api/getPost";
 import { DeletePost } from "../../utils/api/deletePost";
 
+import {
+  PerfectScrollbarConfigInterface,
+  PerfectScrollbarComponent,
+  PerfectScrollbarDirective,
+} from "ngx-perfect-scrollbar";
+
 @Component({
   selector: "app-tab1",
   templateUrl: "tab1.page.html",
   styleUrls: ["tab1.page.scss"],
 })
 export class Tab1Page implements OnDestroy {
+  public config: PerfectScrollbarConfigInterface = {};
+
   userName: any;
   userData: "";
   userPost: "";
@@ -113,7 +121,7 @@ export class Tab1Page implements OnDestroy {
     this.presentLoadingCustom();
     setTimeout(() => {
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
   async presentToast(data) {

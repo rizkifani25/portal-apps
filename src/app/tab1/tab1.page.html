@@ -115,59 +115,64 @@
 
 <!-- start content -->
 <ion-content id="post">
-  <ion-refresher slot="fixed" (ionRefresh)="pullToRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing..."
-      >>
-    </ion-refresher-content>
-  </ion-refresher>
-  <ion-list>
-    <ion-item-sliding *ngFor="let post of userPost">
-      <ion-item-options side="start">
-        <ion-item-option
-          color="danger"
-          (click)="deletePost(post['user_name'], post['content'])"
-          >Delete</ion-item-option
-        >
-      </ion-item-options>
-      <ion-item>
-        <ion-avatar slot="start" class="user-image-style">
-          <img *ngIf="userData" src="{{userData['dp_url']}}" />
-        </ion-avatar>
-        <ion-text class="post-container-style">
-          <div class="user-info">
-            <p>
-              <strong class="name-style" *ngIf="userData"
-                >{{userData["name"]}}</strong
-              >
-              <span class="user-name-style" *ngIf="userPost"
-                >{{post["user_name"]}}</span
-              >
-            </p>
-          </div>
-          <div class="post-content-style">
-            <p *ngIf="userPost">
-              {{post["content"]}}
-            </p>
-          </div>
-          <ul class="post-action">
-            <li class="comment-label-style">
-              <ion-icon name="chatbubbles-outline"></ion-icon>
-              <span class="comment-info-style">1</span>
-            </li>
-            <li class="like-label-style">
-              <ion-icon name="heart-outline"></ion-icon>
-              <span class="like-info-style" *ngIf="userPost"
-                >{{post["like"]}}</span
-              >
-            </li>
-          </ul>
-        </ion-text>
-      </ion-item>
-    </ion-item-sliding>
-  </ion-list>
+  <perfect-scrollbar
+    style="max-width: 600px; max-height: 400px;"
+    [config]="config"
+  >
+    <ion-refresher slot="fixed" (ionRefresh)="pullToRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing..."
+        >>
+      </ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+      <ion-item-sliding *ngFor="let post of userPost">
+        <ion-item-options side="start">
+          <ion-item-option
+            color="danger"
+            (click)="deletePost(post['user_name'], post['content'])"
+            >Delete</ion-item-option
+          >
+        </ion-item-options>
+        <ion-item>
+          <ion-avatar slot="start" class="user-image-style">
+            <img *ngIf="userData" src="{{userData['dp_url']}}" />
+          </ion-avatar>
+          <ion-text class="post-container-style">
+            <div class="user-info">
+              <p>
+                <strong class="name-style" *ngIf="userData"
+                  >{{userData["name"]}}</strong
+                >
+                <span class="user-name-style" *ngIf="userPost"
+                  >{{post["user_name"]}}</span
+                >
+              </p>
+            </div>
+            <div class="post-content-style">
+              <p *ngIf="userPost">
+                {{post["content"]}}
+              </p>
+            </div>
+            <ul class="post-action">
+              <li class="comment-label-style">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+                <span class="comment-info-style">1</span>
+              </li>
+              <li class="like-label-style">
+                <ion-icon name="heart-outline"></ion-icon>
+                <span class="like-info-style" *ngIf="userPost"
+                  >{{post["like"]}}</span
+                >
+              </li>
+            </ul>
+          </ion-text>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+  </perfect-scrollbar>
 </ion-content>
 <!-- end content -->

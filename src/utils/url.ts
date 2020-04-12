@@ -1,4 +1,5 @@
-const API_PREFIX = "https://portalapps-server.herokuapp.com";
+// https://portalapps-server.herokuapp.com
+const API_PREFIX = "http://localhost:3000";
 
 export const USER_LOGIN = API_PREFIX + "/login";
 export const USER_REGISTER = API_PREFIX + "/register";

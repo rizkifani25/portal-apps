@@ -1,6 +1,8 @@
 <h1 align="center"> Portal Apps </h1>
 Twitter Clone using Angular
 
+## Server side : (https://github.com/rizkifani25/portal-server/)
+
 ## Task List:
 - [x] Login Page
 - [x] Register Page
